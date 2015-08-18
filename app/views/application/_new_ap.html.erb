@@ -1,0 +1,12 @@
+<!-- featuring defaults from OpenWRT -->
+
+<h2>New AP</h2>
+<%= form_tag(aps_path, method: 'post', remote: true, class: 'inline_buttons') do %>
+  <%= hidden_field_tag('site', site_uuid) %>
+  <p><%= text_field_tag 'apname_in', nil, placeholder: 'Name', spellcheck: false, size: '15', onkeyup: "clearWarnings(); checkFields('new_ap_form');" %><span id="name_warning" class="hidden warning">name exists</span><br>
+  <%= text_field_tag 'hostname_in', nil, placeholder: 'Hostname', spellcheck: false, size: '25', onkeyup: "clearWarnings(); checkFields('new_ap_form');" %><br>
+  <span id="host_warning" class="hidden warning">hostname exists<br></span>
+  <%= text_field_tag 'weburl_in', '/cgi-bin/luci/admin/status/', placeholder: 'Web URL', spellcheck: false, size: '25', onkeyup: "clearWarnings(); checkFields('new_ap_form');" %><br>
+  <%= text_field_tag 'jsonurl_in', '/cgi-bin/luci/admin/status?status=1', placeholder: 'JSON URL', spellcheck: false, size: '25', onkeyup: "clearWarnings(); checkFields('new_ap_form');" %><br></p>
+  <%= submit_tag "Create", id: "create_ap_button", class: 'disabled_button', disabled: true %>
+<% end %>

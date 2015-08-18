@@ -1,0 +1,12 @@
+<h2>Edit Site</h2>
+<%= form_tag(updatesite_path, method: 'post', remote: true) do %>
+  <%= hidden_field_tag('site', site_uuid) %>
+  <p><%= text_field_tag 'edit_sitename_in', nil, placeholder: 'Name', spellcheck: false, size: '25', onkeyup: "clearWarnings(); checkFields('edit_site_form');" %><span id="sitename_edit_warning" class="hidden warning">name exists</span><br>
+  <%= text_field_tag 'edit_shortname_in', nil, placeholder: 'Abbreviation', spellcheck: false, size: '15', onkeyup: "clearWarnings(); checkFields('edit_site_form');" %>
+  <span id="abbrev_edit_warning" class="hidden warning">abbreviation exists<br></span></p>
+  <%= submit_tag "Edit", id: 'confirm_edit_button', class: 'disabled_button' %>
+<% end %>
+<%= form_tag(destroysite_path, method: 'post', remote: true, class: 'inline_buttons') do %>
+  <%= hidden_field_tag('site', site_uuid) %>
+  <span><%= submit_tag("Remove Site", class: "destroy_site_button always_enabled", data: {confirm: "Are you sure you want to remove #{site_text}? This will also destroy all APs associated with #{site_text}."}) %></span>
+<% end %>

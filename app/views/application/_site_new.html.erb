@@ -1,0 +1,7 @@
+<h2>New Site</h2>
+<%= form_tag(sites_path, method: 'post', remote: true, class: 'inline_buttons') do %>
+  <p><%= text_field_tag 'sitename_in', nil, placeholder: 'Name', spellcheck: false, size: '25', onkeyup: "clearWarnings(); checkFields('new_site_form');" %><span id="sitename_warning" class="hidden warning">name exists</span><br>
+  <%= text_field_tag 'shortname_in', nil, placeholder: 'Abbreviation', spellcheck: false, size: '15', onkeyup: "clearWarnings(); checkFields('new_site_form');" %>
+  <span id="abbrev_warning" class="hidden warning">abbreviation exists<br></span></p>
+  <%= submit_tag "Create", id: "create_site_button", class: 'disabled_button' %>
+<% end %>

@@ -1,0 +1,54 @@
+.draggable {
+  -webkit-transform: translate(0px, 0px);
+          transform: translate(0px, 0px);
+}
+
+.off-map .title_row {
+  display: table-cell;
+  vertical-align: middle;
+  padding-left: 5px;
+  white-space: nowrap;
+}
+
+.off-map span {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.on-map .image_row {
+  display: table-row;
+}
+
+.on-map .image_wrapper {
+  display: table-cell;
+  text-align: center;
+}
+
+.on-map .title_row {
+  display: table-row;
+  padding-left: 0;
+  background: white;
+}
+
+.on-map .title_row strong {
+  display: table-cell;
+  text-align: center;
+}
+
+.destroy_ap_button {
+  opacity: 0.5;
+  padding-left: 5px;
+}
+
+.on-map .destroy_ap_button {
+  display: none;
+}
+
+.off-map strong {
+  opacity: 100;
+  transition: 0.5s;
+}
+
+.on-map {
+  position: absolute;
+}

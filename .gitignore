@@ -1,0 +1,5 @@
+config/database.yml
+log/*
+public/images/maps/*
+tmp/assets/*
+tmp/cache/*

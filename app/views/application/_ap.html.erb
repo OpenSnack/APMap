@@ -1,0 +1,9 @@
+<div class="image_row">
+  <div class="image_wrapper"><%= image_tag(this_ap[6][:img], size: "25", class: "drag_handle", onmouseover: "showInfo(#{this_ap[6].to_json});", onclick: "goToAPSite('http://#{this_ap[0]}#{this_ap[1]}');") %></div>
+</div>
+<div class="title_row"><strong><%= this_ap[3] %></strong></div>
+<%= form_tag(destroyap_path, method: 'post', remote: true) do %>
+  <%= hidden_field_tag('hostname', this_ap[0]) %>
+  <%= hidden_field_tag('site', site_uuid) %>
+  <span><%= image_submit_tag("/images/ap/remove.png", class: "destroy_ap_button", data: {confirm: "Are you sure you want to remove #{this_ap[3]}?"}) %></span>
+<% end %>

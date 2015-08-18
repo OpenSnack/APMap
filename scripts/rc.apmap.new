@@ -1,0 +1,44 @@
+#!/bin/sh
+#
+# APMap control script, written by Steven Boddez
+
+ROOT=/var/www/apmap
+
+case "$1" in
+
+	"start")
+		if [ -e $ROOT/tmp/pids/server.pid ]; then
+			echo "Server is already running"
+			exit 1
+		fi
+		if [ -z $2 ]; then
+			PORT=3000
+		elif [[ $2 < 1 || $2 > 65535 ]]; then
+			echo "Argument is not a valid port, exiting"
+			exit 1
+		else
+			PORT=$2
+		fi
+		if [ ! -e $ROOT/config/database.yml ]; then
+			echo "No database.yml found! Exiting"
+			exit 1
+		fi
+
+		echo Starting APMap
+		if [ ! -e $ROOT/config/secrets.yml ]; then
+			echo -e "production:\n  secret_key_base:" `rake $ROOT/Rakefile secret` >> $ROOT/config/secrets.new.yml
+			mv $ROOT/config/secrets.new.yml $ROOT/config/secrets.yml
+		fi
+		(su - apmap -c "cd $ROOT && rails server -d -e production thin -p $2") || \
+				echo "The server failed to start. Check the logs for more information."
+	;;
+
+	"stop")
+		su - apmap -c "cat $ROOT/tmp/pids/server.pid | xargs kill"
+	;;
+
+	*)
+		echo "Usage: $0 {start [port]|stop}"
+	;;
+
+esac

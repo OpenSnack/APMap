@@ -1,0 +1,21 @@
+<div id="session_form">
+  <div>
+    <h1>Log into APMap</h1>
+
+    <% if flash[:danger] %>
+      <div id="invalid"><%= flash[:danger] %></div>
+    <% end %>
+
+    <%= form_for(:session, url: login_path) do |f| %>
+      
+      <%= f.label :name %>
+      <%= f.text_field :name %><br><br>
+
+      <%= f.label :password %>
+      <%= f.password_field :password %><br><br>
+
+      <%= f.submit "Log in" %>
+
+    <% end %>
+  </div>
+</div>

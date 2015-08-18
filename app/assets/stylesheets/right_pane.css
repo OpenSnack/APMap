@@ -1,0 +1,92 @@
+h2 {
+  margin-top: 0;
+}
+
+select {
+  width: 200px;
+}
+
+#right_pane {
+  position: absolute;
+  right: 0;
+  top: 20px;
+  vertical-align: top;
+  width: 250px;
+  min-width: 250px;
+  background-color: white;
+  padding: 0 20px 20px 20px;
+  z-index: 1;
+}
+
+.right-drop-target {
+  background-color: rgba(0,255,0,0.3);
+}
+
+#buttons {
+  margin-top: 15px;
+}
+
+#buttons img {
+  cursor: pointer;
+}
+
+#upload_button {
+  margin-right: 30px;
+}
+
+.form h2 {
+  padding-top: 15px;
+}
+
+#info_pane {
+  border: 5px solid rgba(0,0,255,0.5);
+  margin-top: 15px;
+}
+
+#info_pane strong {
+  text-decoration: underline;
+}
+
+#info_wrapper div {
+  font-weight: bold;
+}
+
+#info_wrapper div span {
+  white-space: nowrap;
+  font-weight: normal;
+}
+
+#info_title {
+  font-size: 150%;
+}
+
+#ap_menu {
+  border: 5px solid rgba(0,255,0,0.5);
+  margin-top: 15px;
+}
+
+.right-drop-target {
+  background-color: rgba(0,255,0,0.2);
+}
+
+.inline_buttons {
+  display: inline;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {  
+  width: 25px;
+  height: 25px;
+  display: table;
+}
+
+#added {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+}

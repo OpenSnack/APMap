@@ -1,0 +1,57 @@
+<div id="right_pane">
+  <h1 id="site_text"><%= site_text %></h1>
+  <%= form_tag(show_path, method: 'get', remote: true) do %>
+    <%= select_tag "site_select", options_from_collection_for_select(sites, "uuid", "comment"), {include_blank: "Choose a site", onchange: "this.form.submit();"} %>
+  <% end %>
+
+  <%= render "nav" %>
+
+  <pre id="button_info"> </pre>
+  <div id="flash" class="warning"></div>
+
+  <div id="wrapper">
+  <% unless site_text.nil? %>
+    <% if site_img.nil? %>
+      <div id="info_pane">
+        <h2 id="info_title">Upload a site map to start</h2>
+        <div id="upload_start">
+          <%= render "upload" %>
+        </div>
+      </div>
+    <% else %>
+      <%= render "info_pane" %>
+      <div id="menu_wrapper" class="hidden">
+        <div id="ap_menu">
+          <ul class="not_added" id="not_added">
+            <% if aps_not_added %>
+              <% aps_not_added.each do |ap| %>
+                <li id="<%= ap[0] %>" class="draggable droppable">
+                  <%= render partial: "ap", locals: {site_uuid: site_uuid, this_ap: ap} %>
+                </li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+        <%= button_tag "Reset Positions", id: "reset_button", onclick: "resetPos();" %>
+      </div>
+    <% end %>
+  <% end %>
+  </div>
+  <div id='new_site_form' class='hidden form'>
+    <%= render partial: "site_new", locals: {site_names: site_names, site_abbrevs: site_abbrevs} %>
+    <%= button_tag "Cancel", onclick: "hideView($('#new_site_form'));" %>
+  </div>
+  <div id='edit_site_form' class='hidden form'>
+    <%= render partial: "site_edit", locals: {site_uuid: site_uuid, site_text: site_text, site_names: site_names, site_abbrevs: site_abbrevs} %>
+    <%= button_tag "Cancel", onclick: "hideView($('#edit_site_form'));" %>
+  </div>
+  <div id='new_ap_form' class='hidden form'>
+    <%= render partial: "new_ap", locals: {site_uuid: site_uuid, ap_names: ap_names, ap_hosts: ap_hosts} %>
+    <%= button_tag "Cancel", onclick: "hideView($('#new_ap_form'));" %>
+  </div>
+  <div id='upload_form' class='hidden form'>
+    <h2>Upload Site Map</h2>
+    <%= render "upload" %>
+    <%= button_tag "Cancel", onclick: "hideView($('#upload_form'));" %>
+  </div>
+</div>

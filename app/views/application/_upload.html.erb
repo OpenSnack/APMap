@@ -1,0 +1,4 @@
+<%= form_tag(upload_path, method: 'post', multipart: true, class: 'inline_buttons') do %>
+  <%= hidden_field_tag('site', @site_uuid) %>
+  <p><%= file_field_tag 'map', size: '10', onchange: "this.form.submit();" %></p>
+<% end %>
