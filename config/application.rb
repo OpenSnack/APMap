@@ -26,13 +26,13 @@ module Apmap
     # LDAP configuration settings. Restart the server after changing these
 
     # Use LDAP authentication (true/false)
-    config.x.ldap.enable = true
+    config.x.ldap.enable = false
 
-    # LDAP host (eg. ldap.example.com)
-    config.x.ldap.host = 'ldap.gsacrd.ab.ca'
+    # LDAP host
+    # config.x.ldap.host = 'ldap.example.com'
 
-    # LDAP group DN (eg. ou=staff,ou=people,o=example,c=com)
-    config.x.ldap.group_dn = 'ou=lts,ou=staff,ou=people,o=gsacrd,c=ca'
+    # LDAP group DN
+    config.x.ldap.group_dn = 'ou=staff,ou=people,o=example,c=com'
 
   end
 end
