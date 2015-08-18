@@ -75,7 +75,7 @@ class ApplicationController < ActionController::Base
   private
     def logged_in_user
       # before_action: check if user is logged in
-      unless logged_in?
+      unless logged_in? or !Rails.configuration.x.ldap.enable
         flash[:danger] = "You need to log in to access this page."
         redirect_to '/login'
       end

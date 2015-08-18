@@ -8,13 +8,13 @@ module ApplicationHelper
     ap_jsonurl = "http://#{ap[0]}#{ap[2]}"
     ping = `ping -q -c 1 -t 1 #{ap[0]}`
     if $? != 0
-      return {"apname": ap[3], "error": "ping timeout"}
+      return {:"apname" => ap[3], :"error" => "ping timeout"}
     end
     begin
       ap_data = JSON.load(open(ap_jsonurl))
     rescue
       # couldn't connect for some reason
-      return {"apname": ap[3], "error": $!.to_s}
+      return {:"apname" => ap[3], :"error" => $!.to_s}
     end
 
     # construct the dictionary for the info pane
@@ -25,14 +25,14 @@ module ApplicationHelper
     ap_up = [60,60,24].reduce([ap_data["uptime"]]) { |m,o| m.unshift(m.shift.divmod(o)).flatten }
     uptime = "#{ap_up[0]}d #{ap_up[1]}h #{ap_up[2]}m"
     r0_networks = ap_data["wifinets"][0]["networks"]
-    r0_info = {"channel": "#{r0_networks[0]["channel"]} (#{r0_networks[0]["frequency"]} GHz)",
-                "signal": r0_networks.map {|n| n["signal"]}.reduce(:+)/r0_networks.reject {|i| i["signal"]==0}.size.to_f,
-                "quality": r0_networks.map {|n| n["quality"]}.reduce(:+)/r0_networks.reject {|i| i["signal"]==0}.size.to_f}
+    r0_info = {:"channel" => "#{r0_networks[0]["channel"]} (#{r0_networks[0]["frequency"]} GHz)",
+                :"signal" => r0_networks.map {|n| n["signal"]}.reduce(:+)/r0_networks.reject {|i| i["signal"]==0}.size.to_f,
+                :"quality" => r0_networks.map {|n| n["quality"]}.reduce(:+)/r0_networks.reject {|i| i["signal"]==0}.size.to_f}
     r1_networks = ap_data["wifinets"][1]["networks"]
-    r1_info = {"channel": "#{r1_networks[0]["channel"]} (#{r1_networks[0]["frequency"]} GHz)",
-                "signal": r1_networks.map {|n| n["signal"]}.reduce(:+)/r1_networks.reject {|i| i["signal"]==0}.size.to_f,
-                "quality": r1_networks.map {|n| n["quality"]}.reduce(:+)/r1_networks.reject {|i| i["signal"]==0}.size.to_f}
-    return {"apname": ap[3], "hname": ap[0], "connections": connections, "uptime": uptime, "r0_info": r0_info, "r1_info": r1_info}
+    r1_info = {:"channel" => "#{r1_networks[0]["channel"]} (#{r1_networks[0]["frequency"]} GHz)",
+                :"signal" => r1_networks.map {|n| n["signal"]}.reduce(:+)/r1_networks.reject {|i| i["signal"]==0}.size.to_f,
+                :"quality" => r1_networks.map {|n| n["quality"]}.reduce(:+)/r1_networks.reject {|i| i["signal"]==0}.size.to_f}
+    return {:"apname" => ap[3], :"hname" => ap[0], :"connections" => connections, :"uptime" => uptime, :"r0_info" => r0_info, :"r1_info" => r1_info}
   end
 
   def ap_config(ap)

@@ -10,10 +10,12 @@
 
 <%= render partial: "right_pane", locals: {sites: @sites, site_uuid: @site_uuid, site_text: @site_text, site_img: @site_img, aps_not_added: @aps_not_added, ap_names: @ap_names, ap_hosts: @ap_hosts, site_names: @site_names, site_abbrevs: @site_abbrevs} %>
 
-<div id="user_info">
-  Logged in as <strong><%= @current_user %></strong> |
-  <%= link_to "Logout", logout_path, method: :delete %>
-</div>
+<% if Rails.configuration.x.ldap.enable %>
+  <div id="user_info">
+    Logged in as <strong><%= @current_user %></strong> |
+    <%= link_to "Logout", logout_path, method: :delete %>
+  </div>
+<% end %>
 
 <% unless @site_img.nil? %>
   <ul id="added">

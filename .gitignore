@@ -3,3 +3,4 @@ log/*
 public/images/maps/*
 tmp/assets/*
 tmp/cache/*
+tmp/pids/*

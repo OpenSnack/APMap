@@ -22,5 +22,17 @@ module Apmap
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # LDAP configuration settings. Restart the server after changing these
+
+    # Use LDAP authentication (true/false)
+    config.x.ldap.enable = true
+
+    # LDAP host (eg. ldap.example.com)
+    config.x.ldap.host = 'ldap.gsacrd.ab.ca'
+
+    # LDAP group DN (eg. ou=staff,ou=people,o=example,c=com)
+    config.x.ldap.group_dn = 'ou=lts,ou=staff,ou=people,o=gsacrd,c=ca'
+
   end
 end
