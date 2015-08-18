@@ -18,6 +18,6 @@ For LDAP authentication, set the config.x.ldap variables in config/application.r
 
 A server start script is provided in scripts/ that can be placed in /etc/rc.d/.
 
-To run the server, do `/etc/rc.d/rc.apmap.new start`, with an optional port (3000 by default.)
+To run the server, do `/etc/rc.d/rc.apmap start`, with an optional port (3000 by default.)
 
-To stop the server, do `/etc/rcd./rc.apmap.new stop`.
+To stop the server, do `/etc/rcd./rc.apmap stop`.
